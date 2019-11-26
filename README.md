@@ -26,16 +26,15 @@ The `config/custom-environment-variables.json` file is used for matching variabl
 
 ### Config File Description
 
-| Variable                       | Description                                                  |
-| -------------------------------|------------------------------------------------------------- |
-| **MONGODB_URI**                | Url to mongodb. Example `mongodb://127.0.0.1:27017/`         |
-| **MONGODB_DATABASE**           | Database name. Example `project_db_name`                     |
-| **CORS**                       | Flag for cors politics. Default `false`                      |
-| **NODE_APP_INSTANCE**          | Name of app instance. Example `development`                  |
-| **CONTRACTS.SDC**              | Address of SDC contract. Example                             |
-|                                | `0x0000000000000000000000000000000000000000`                 |
-| **CONTRACTS.LUV**              | Address of LUV contract. Example                             |
-|                                | `0x0000000000000000000000000000000000000000`                 |
+| Variable                       | Description                                                                       |
+| -------------------------------|---------------------------------------------------------------------------------- |
+| **MONGODB_URI**                | Url to mongodb. Example `mongodb://127.0.0.1:27017/`                              |
+| **MONGODB_DATABASE**           | Database name. Example `project_db_name`                                          |
+| **CORS**                       | Flag for cors politics. Default `false`                                           |
+| **NODE_APP_INSTANCE**          | Name of app instance. Example `development`                                       |
+| **CRYPTO_API_URL**             | Url to crypto api service. Example `https://697-crypto-api.pixelplexlabs.com`     |
+| **CONTRACTS.SDC**              | Address of SDC contract. Example `0x0000000000000000000000000000000000000000`     |
+| **CONTRACTS.LUV**              | Address of LUV contract. Example `0x0000000000000000000000000000000000000000`     |
 
 ## Development
 
