@@ -11,11 +11,11 @@ test:
   services:
     - mongo
   cache:
-    key: $CI_COMMIT_REF_NAME
+#    key: $CI_COMMIT_REF_NAME
     paths:
       - node_modules
   script:
-    - apk --no-cache add make gcc g++ python git
+    - apk add make gcc g++ python git
     - npm ci
     - npm run audit
     - npm run lint
@@ -24,52 +24,38 @@ test:
     - docker
   only:
     - merge_requests
-    - develop
-    - master
     - web
-
 
 
 .deploy:
   stage: deploy
   variables:
     NODE_ENV: production
-    AUTH_SECRET_KEY: $AUTH_SECRET_KEY
-  before_script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME  --cache-from $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
-    - docker-compose -p 000-project up server_migrate
-    - docker-compose -p 000-project up -d server
-  after_script:
-    - docker logout $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME --cache-from $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME .
+    - docker-compose -p 699-sdcoin up -d
 
-#
-# need to uncomment
-#
+develop:
+  extends: .deploy
+  environment:
+    name: develop
+    url:  https://699-sdcoin.pixelplex-test.by/
+  variables:
+    NODE_APP_INSTANCE: develop
+  only:
+    - develop
+  tags:
+    - pp-develop
 
-#develop:
-#  extends: .deploy
-#  environment:
-#    name: develop
-##    url:  https://myurl.pixelplex-test.by/
-#  variables:
-#    NODE_APP_INSTANCE: develop
-#  only:
-#    - develop
-#  tags:
-#    - pp-develop
-#
-#
-#master:
-#  extends: .deploy
-#  environment:
-#    name: master
-##    url:  https://myurl.pixelplex-test.by/
-#  variables:
-#    NODE_APP_INSTANCE: master
-#  only:
-#    - master
-#  tags:
-#    - pp-stage
+
+master:
+  extends: .deploy
+  environment:
+    name: master
+    url:  https://699-sdcoin.pixelplexlabs.com/
+  variables:
+    NODE_APP_INSTANCE: master
+  only:
+    - master
+  tags:
+    - pp-stage

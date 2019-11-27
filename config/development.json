@@ -1,5 +1,4 @@
 {
-	"AUTH_SECRET_KEY": "testkey",
 	"NODE_APP_INSTANCE": "development",
 	"SENTRY_DSN": ""
 }
