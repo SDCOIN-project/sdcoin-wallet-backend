@@ -10,7 +10,7 @@ export class CryptoApiService {
   }
 
   private async request(path: string, data: { [key: string]: any } = {}) {
-    data.token = this.configService.get().CRYPTO_API.TOKEN;
+    // data.token = this.configService.get().CRYPTO_API.TOKEN;
     return get(`${this.configService.get().CRYPTO_API.URL}/api/v1/coins/eth/${path}`, data);
   }
 

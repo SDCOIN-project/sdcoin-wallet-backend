@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { TransactionRepository } from './repositories/transaction.repository';
-import * as config from 'config';
 import { CURRENCY_TYPE } from './transactions.constants';
 import { ConfigService } from '../config/config.service';
 

@@ -1,7 +1,7 @@
 {
 	"CORS": true,
 	"CRYPTO_API": {
-		"URL": "https://697-crypto-api.pixelplex-test.by"
+		"URL": "https://697-crypto-api.pixelplexlabs.com"
 	},
 	"CONTRACTS": {
 		"SDC": "0x271A509DA2dc7DDB46Ed25E7d109579C363EE4ac",
