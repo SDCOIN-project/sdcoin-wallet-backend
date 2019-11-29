@@ -1,8 +1,6 @@
 import axios from 'axios';
 import * as qs from 'qs';
-
-import { ConfigService } from '../config/config.service';
-const configService = new ConfigService();
+import { BadRequestException } from '@nestjs/common';
 
 const DEFAULT_OPTIONS = { withCredentials: true };
 
@@ -14,21 +12,21 @@ const DEFAULT_OPTIONS = { withCredentials: true };
  * @param {Object} options
  * @returns {Promise<any>}
  */
-function executeRequest(method, url, data, options = DEFAULT_OPTIONS) {
+const executeRequest = async (method, url, data, options = DEFAULT_OPTIONS) => {
   const params = [
     url,
     ...data ? [data] : [],
     options,
   ];
 
-  return new Promise((resolve, reject) => {
-    axios[method](...params).then((response) => {
-      resolve(response.data);
-    }).catch(({ response }) => {
-      reject(response);
-    });
-  });
-}
+  try {
+    const { data: result } = await axios[method](...params);
+    return result;
+  } catch (e) {
+    const { response } = e;
+    throw new BadRequestException(response.data || response.statusText, response.status);
+  }
+};
 
 /**
  * Get method
@@ -37,8 +35,7 @@ function executeRequest(method, url, data, options = DEFAULT_OPTIONS) {
  * @param {Object} options
  * @returns {Promise<any>}
  */
-export function get(url, data, options) {
-  data.token = configService.get().CRYPTO_API_TOKEN;
+export const get = async (url, data: { [key: string]: any } = {}, options = DEFAULT_OPTIONS) => {
   const query = qs.stringify(data);
   return executeRequest('get', `${url}?${query || ''}`, null, options);
-}
+};

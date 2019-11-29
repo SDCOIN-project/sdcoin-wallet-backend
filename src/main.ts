@@ -31,8 +31,8 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
 
   const options = new DocumentBuilder()
-    .setTitle('Nest app')
-    .setDescription('The Nest base module API')
+    .setTitle('SDCoin backend')
+    .setDescription('SDCoin Wallet Backend')
     .setVersion('1.0')
     .setBasePath('api/v1')
     .setSchemes('https', 'http')

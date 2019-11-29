@@ -27,7 +27,7 @@ export class TransactionsController {
   @ApiBearerAuth()
   @UsePipes(new JoiValidationPipe(GetTransactionsValidator))
   async getTransactions(@Param() param: AccountAddressDto, @Query() query: GetTransactionsDto) {
-    return this.transactionService.getTransactions(query.offset, query.count, query.currencyType, param.address);
+    return this.transactionService.getTransactions(query.currencyType, param.address, query.offset, query.count);
   }
 
 }

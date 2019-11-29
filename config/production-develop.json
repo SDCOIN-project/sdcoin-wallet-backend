@@ -1,3 +1,6 @@
 {
-	"CORS": true
+	"CORS": true,
+	"CRYPTO_API": {
+		"URL": "https://697-crypto-api.pixelplex-test.by"
+	}
 }
