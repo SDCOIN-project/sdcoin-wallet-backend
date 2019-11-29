@@ -33,6 +33,7 @@ The `config/custom-environment-variables.json` file is used for matching variabl
 | **CORS**                       | Flag for cors politics. Default `false`                                           |
 | **NODE_APP_INSTANCE**          | Name of app instance. Example `development`                                       |
 | **CRYPTO_API_URL**             | Url to crypto api service. Example `https://697-crypto-api.pixelplexlabs.com`     |
+| **CRYPTO_API_TOKEN**           | Token to crypto api service.                                                      |
 | **CONTRACTS.SDC**              | Address of SDC contract. Example `0x0000000000000000000000000000000000000000`     |
 | **CONTRACTS.LUV**              | Address of LUV contract. Example `0x0000000000000000000000000000000000000000`     |
 

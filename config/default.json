@@ -3,6 +3,7 @@
   "MONGODB_DATABASE": "sdcoin",
 	"CORS": false,
 	"NODE_APP_INSTANCE": "",
+	"CRYPTO_TOKEN": "",
 	"CRYPTO_API_URL": "https://697-crypto-api.pixelplexlabs.com",
 	"CONTRACTS": {
 		"SDC": "",

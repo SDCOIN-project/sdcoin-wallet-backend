@@ -9,7 +9,7 @@ export class TransactionRepository {
       get(`${config.CRYPTO_API_URL}/api/v1/coins/eth/accounts/${address}/transfers`, { skip: offset, limit: count }, {}).then((data) => {
         resolve(data);
       }).catch((error) => {
-        reject(error);
+        reject(error.data);
       });
     });
   }
@@ -19,7 +19,7 @@ export class TransactionRepository {
       get(`${config.CRYPTO_API_URL}/api/v1/coins/eth/tokens/${token}/${address}/transfers`, { skip: offset, limit: count }, {}).then((data) => {
         resolve(data);
       }).catch((error) => {
-        reject(error);
+        reject(error.data);
       });
     });
   }
