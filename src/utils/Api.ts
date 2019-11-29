@@ -38,7 +38,7 @@ function executeRequest(method, url, data, options = DEFAULT_OPTIONS) {
  * @returns {Promise<any>}
  */
 export function get(url, data, options) {
-  data.token = configService.get().CRYPTO_TOKEN;
+  data.token = configService.get().CRYPTO_API_TOKEN;
   const query = qs.stringify(data);
   return executeRequest('get', `${url}?${query || ''}`, null, options);
 }
