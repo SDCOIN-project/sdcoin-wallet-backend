@@ -6,4 +6,8 @@ export interface ConfigInterface {
     readonly TOKEN: string;
     readonly URL: string;
   };
+  readonly CONTRACTS: {
+    SDC: string;
+    LUV: string;
+  };
 }
