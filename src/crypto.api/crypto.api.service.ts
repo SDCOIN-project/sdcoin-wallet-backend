@@ -27,8 +27,8 @@ export class CryptoApiService {
 
   async unsubscribeFromNewTransactions(address: string) {
     this.connection.unsubscribe([SUBSCRIBE_METHODS.NEW_TRANSACTION, address, 0]);
-    this.connection.unsubscribe([SUBSCRIBE_METHODS.NEW_TRANSACTION, this.configService.get().CONTRACTS.LUV, address, 0]);
-    this.connection.unsubscribe([SUBSCRIBE_METHODS.NEW_TRANSACTION, this.configService.get().CONTRACTS.SDC, address, 0]);
+    this.connection.unsubscribe([SUBSCRIBE_METHODS.NEW_TRANSFER, this.configService.get().CONTRACTS.LUV, address, 0]);
+    this.connection.unsubscribe([SUBSCRIBE_METHODS.NEW_TRANSFER, this.configService.get().CONTRACTS.SDC, address, 0]);
   }
 
 }
