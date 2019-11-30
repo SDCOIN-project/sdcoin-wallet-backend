@@ -24,7 +24,7 @@ const executeRequest = async (method, url, data, options = DEFAULT_OPTIONS) => {
     return result;
   } catch (e) {
     const { response } = e;
-    throw new BadRequestException(response.data || response.statusText, response.status);
+    throw new BadRequestException(response ? response.data || response.statusText : e.message, response ? response.status : 500);
   }
 };
 
