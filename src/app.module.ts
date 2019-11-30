@@ -4,6 +4,7 @@ import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ScheduleCheckModule } from './schedule/schedule.check.module';
+import { SocketModule } from './socket/socket.module';
 import { CryptoApiModule } from './crypto.api/crypto.api.module';
 
 @Module({
@@ -11,6 +12,7 @@ import { CryptoApiModule } from './crypto.api/crypto.api.module';
     TransactionsModule,
     ConfigModule,
     ScheduleCheckModule,
+    SocketModule,
     CryptoApiModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

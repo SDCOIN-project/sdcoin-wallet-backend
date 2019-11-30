@@ -1,24 +1,34 @@
-import { Injectable } from '@nestjs/common';
-import { get } from '../utils/Api';
+import { Injectable, Inject } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
+import { CryptoApiConnector } from './crypto.api.connector';
+import { SUBSCRIBE_METHODS } from './crypto.api.constants';
 
 @Injectable()
 export class CryptoApiService {
 
   constructor(
+    @Inject('CONNECTION') private readonly connection: CryptoApiConnector,
     private readonly configService: ConfigService) {
   }
 
-  private async request(path: string, data: { [key: string]: any } = {}) {
-    // data.token = this.configService.get().CRYPTO_API.TOKEN;
-    return get(`${this.configService.get().CRYPTO_API.URL}/api/v1/coins/eth/${path}`, data);
-  }
-
   async getEthTransactions(address: string, skip: number, limit: number) {
-    return this.request(`accounts/${address}/transfers`, { skip, limit });
+    return this.connection.request(`accounts/${address}/transfers`, { skip, limit });
   }
 
   async getTokenTransactions(address: string, token: string, skip: number, limit: number) {
-    return this.request(`tokens/${token}/${address}/transfers`, { skip, limit });
+    return this.connection.request(`tokens/${token}/${address}/transfers`, { skip, limit });
   }
+
+  async subscribeToNewTransactions(address: string, cb: (method, data) => void) {
+    this.connection.subscribe([SUBSCRIBE_METHODS.NEW_TRANSACTION, address, 0], cb);
+    this.connection.subscribe([SUBSCRIBE_METHODS.NEW_TRANSFER, this.configService.get().CONTRACTS.LUV, address, 0], cb);
+    this.connection.subscribe([SUBSCRIBE_METHODS.NEW_TRANSFER, this.configService.get().CONTRACTS.SDC, address, 0], cb);
+  }
+
+  async unsubscribeFromNewTransactions(address: string) {
+    this.connection.unsubscribe([SUBSCRIBE_METHODS.NEW_TRANSACTION, address, 0]);
+    this.connection.unsubscribe([SUBSCRIBE_METHODS.NEW_TRANSACTION, this.configService.get().CONTRACTS.LUV, address, 0]);
+    this.connection.unsubscribe([SUBSCRIBE_METHODS.NEW_TRANSACTION, this.configService.get().CONTRACTS.SDC, address, 0]);
+  }
+
 }

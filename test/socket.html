@@ -1,0 +1,11 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+
+<script>
+  var socket = io('ws://127.0.0.1:3001');
+  socket.on('connect', function() {
+    socket.emit('subscribeToAddress', {
+      address: '0xd823CB038fDCDe5a53B05B953B24651a7aFd23eB',
+    });
+  });
+  socket.on('new_transaction', function(data) { console.log(data) });
+</script>
