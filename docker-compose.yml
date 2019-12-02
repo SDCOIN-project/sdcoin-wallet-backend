@@ -23,7 +23,7 @@ services:
       - CRYPTO_API_TOKEN=$CRYPTO_API_TOKEN
     ports:
       - "26991:3000"
-      - "26992:3001"
+      - "26993:3001"
     restart: always
     depends_on:
       - mongodb
