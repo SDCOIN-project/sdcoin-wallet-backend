@@ -18,8 +18,7 @@ export class CryptoApiConnector {
   }
 
   async connect() {
-    // TODO: need add token after transfer to develop
-    this.client = new WebSocket(this.configService.get().CRYPTO_API.WS);
+    this.client = new WebSocket(`${this.configService.get().CRYPTO_API.WS}?token=${this.configService.get().CRYPTO_API.TOKEN}`);
     return new Promise((resolve) => this.client.on('open', () => {
       this.client.on('message', (data) => this.onMessage(data));
       resolve();
@@ -44,8 +43,7 @@ export class CryptoApiConnector {
   }
 
   async request(path: string, data: { [key: string]: any } = {}) {
-    // TODO: need add token after transfer to develop
-    // data.token = this.configService.get().CRYPTO_API.TOKEN;
+    data.token = this.configService.get().CRYPTO_API.TOKEN;
     return get(`${this.configService.get().CRYPTO_API.URL}/api/v1/coins/eth/${path}`, data);
   }
 

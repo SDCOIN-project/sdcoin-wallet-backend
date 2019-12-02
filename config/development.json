@@ -3,6 +3,6 @@
 	"SENTRY_DSN": "",
 	"CORS": true,
 	"CRYPTO_API_TOKEN": "",
-	"CRYPTO_API_URL": "https://697-crypto-api.pixelplexlabs.com",
+	"CRYPTO_API_URL": "https://697-crypto-api.pixelplex-test.by",
 	"CRYPTO_API_WS": "wss://697-crypto-api.pixelplex-test.by/ws/eth"
 }
