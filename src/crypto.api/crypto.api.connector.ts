@@ -20,14 +20,14 @@ export class CryptoApiConnector {
   async connect() {
     this.client = new WebSocket(`${this.configService.get().CRYPTO_API.WS}?token=${this.configService.get().CRYPTO_API.TOKEN}`);
     return new Promise((resolve) => this.client.on('open', () => {
+      // tslint:disable-next-line:no-empty
+      this.subscribe(['new_block', 0], (method, data) => {});
       this.client.on('message', (data) => this.onMessage(data));
       resolve();
     }));
   }
 
   private async onMessage(data: string) {
-    this.logger.verbose('--- new message ---');
-    this.logger.verbose(`\n${data}`);
     const { error, result, id, method, params } = JSON.parse(data);
     if (result === true) {
       return;
@@ -38,6 +38,8 @@ export class CryptoApiConnector {
       return;
     }
     if (method && [SUBSCRIBE_METHODS.NEW_TRANSACTION, SUBSCRIBE_METHODS.NEW_TRANSFER].includes(method)) {
+      this.logger.verbose('--- new message ---');
+      this.logger.verbose(`\n${data}`);
       return this.callback[params[0]](method, params[1]);
     }
   }
