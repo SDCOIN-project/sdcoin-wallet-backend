@@ -31,14 +31,14 @@ services:
     depends_on:
       - mongodb
 
-  server_migrate:
-    build: .
-    command: npm run migrate
-    depends_on:
-      - "mongodb"
-    environment:
-      - NODE_APP_INSTANCE=develop
-      - NODE_ENV=development
-      - MONGODB_URI=mongodb://mongodb:27017/
+#  server_migrate:
+#    build: .
+#    command: npm run migrate
+#    depends_on:
+#      - "mongodb"
+#    environment:
+#      - NODE_APP_INSTANCE=develop
+#      - NODE_ENV=development
+#      - MONGODB_URI=mongodb://mongodb:27017/
 volumes:
   mongodb:
