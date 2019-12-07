@@ -1,14 +1,14 @@
 {
-	"CORS": false,
-	"NODE_APP_INSTANCE": "",
 	"CRYPTO_API": {
 		"TOKEN": "f25dad2aacc926604190852e94e5e9a705a72a8439281716",
 		"URL": "https://697-crypto-api.pixelplexlabs.com",
 		"WS": "wss://697-crypto-api.pixelplex-test.by/ws/eth"
 	},
+	"CORS": false,
+	"NODE_APP_INSTANCE": "",
 	"ETHEREUM": {
-		"SENDER": "",
 		"PRIV_KEY": "",
+		"SENDER": "",
 		"NETWORK": "rinkeby",
 		"INFURA_URL": "https://rinkeby.infura.io/v3/3733109dd9304d158d8def80a87fbcfe"
 	}
