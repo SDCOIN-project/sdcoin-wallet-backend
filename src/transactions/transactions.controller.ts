@@ -1,16 +1,13 @@
 import {
   Controller,
-  Get,
   UsePipes,
-  Query,
-  Param,
+  Post, Body,
 } from '@nestjs/common';
-import { ApiUseTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
+import { ApiUseTags, ApiOperation } from '@nestjs/swagger';
 import { JoiValidationPipe } from '../pipes/joi.validation.pipe';
-import { GetTransactionsDto } from './dto/get.transactions.dto';
-import { GetTransactionsValidator } from './validators/get.transactions.validator';
 import { TransactionService } from './transactions.service';
-import { AccountAddressDto } from './dto/account.address.dto';
+import { SignTransaction } from './dto/sign.transaction.dto';
+import { SignTransactionValidator } from './validators/sign.transaction.validator';
 
 @ApiUseTags('transactions')
 @Controller('transactions')
@@ -19,15 +16,13 @@ export class TransactionsController {
     private readonly transactionService: TransactionService) {
   }
 
-  @Get(':address')
+  @Post('proxy')
   @ApiOperation({
-    title: 'Get transactions list',
-    description: `returns all transactions for particular address`,
+    title: 'Sign and send payment transaction',
   })
-  @ApiBearerAuth()
-  @UsePipes(new JoiValidationPipe(GetTransactionsValidator))
-  async getTransactions(@Param() param: AccountAddressDto, @Query() query: GetTransactionsDto) {
-    return this.transactionService.getTransactions(query.currencyType, param.address, query.offset, query.count);
+  @UsePipes(new JoiValidationPipe(SignTransactionValidator))
+  async signTransaction(@Body() body: SignTransaction) {
+    return this.transactionService.proxyTransaction(body.from, body.escrow, body.sig);
   }
 
 }

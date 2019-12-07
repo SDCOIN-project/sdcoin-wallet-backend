@@ -12,4 +12,10 @@ export interface ConfigInterface {
     SDC: string;
     LUV: string;
   };
+  readonly ETHEREUM: {
+    readonly SENDER: string;
+    readonly PRIV_KEY: string;
+    readonly NETWORK: string;
+    readonly INFURA_URL: string;
+  };
 }

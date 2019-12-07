@@ -1,16 +1,15 @@
 {
-  "MONGODB_URI": "mongodb://127.0.0.1:27017/",
-  "MONGODB_DATABASE": "sdcoin",
 	"CORS": false,
 	"NODE_APP_INSTANCE": "",
-	"WS_PORT": 3001,
 	"CRYPTO_API": {
-		"TOKEN": "",
+		"TOKEN": "f25dad2aacc926604190852e94e5e9a705a72a8439281716",
 		"URL": "https://697-crypto-api.pixelplexlabs.com",
 		"WS": "wss://697-crypto-api.pixelplex-test.by/ws/eth"
 	},
-	"CONTRACTS": {
-		"SDC": "",
-		"LUV": ""
+	"ETHEREUM": {
+		"SENDER": "",
+		"PRIV_KEY": "",
+		"NETWORK": "rinkeby",
+		"INFURA_URL": "https://rinkeby.infura.io/v3/3733109dd9304d158d8def80a87fbcfe"
 	}
 }
