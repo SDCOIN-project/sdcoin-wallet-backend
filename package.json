@@ -39,7 +39,7 @@
     "bcrypt": "^3.0.6",
     "bignumber.js": "^9.0.0",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.9.1",
+    "class-validator": "^0.14.0",
     "config": "^3.1.0",
     "crypto-random-string": "^3.0.1",
     "cryptoapi-lib": "0.0.1-rc.2",
